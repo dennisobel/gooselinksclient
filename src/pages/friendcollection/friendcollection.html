@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar color="popOverBtn"> 
+    <ion-buttons start >
+      <button ion-button (click)="close()">
+        <ion-icon name="md-close"></ion-icon>
+      </button> 
+    </ion-buttons>   
+    <ion-buttons end >
+      <button ion-button (click)="home()">
+        <ion-icon name="md-home"></ion-icon>
+      </button> 
+    </ion-buttons>       
+    <ion-title>Collection</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let book of booksArray" text-wrap>
+    
+    <ion-card (dblclick)="subscribeBook(book)" class="curves">
+      <img class="curves imgcard" src={{book.image}} ngDefaultControl>
+      <ion-card-content>
+        <ion-card-title>{{book.subtitle}}</ion-card-title>
+        <ion-card-title><strong>{{book.title}}</strong></ion-card-title>
+      </ion-card-content>
+      <ion-row>
+        <ion-col col-4>
+          <button ion-button ion-start clear small color="gold" (click)="like(book)">
+            <ion-icon name="md-thumbs-up"></ion-icon>
+            <div>12 Likes</div>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button ion-start clear small color="gold" (click)="unlike(book)">
+            <ion-icon name="md-thumbs-down"></ion-icon>
+            <div>4 Dislikes</div>
+          </button>          
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button ion-start clear small color="gold" (click)="comment(book)">
+            <ion-icon name="md-text"></ion-icon>
+            <div>4 Comments</div>
+          </button>          
+        </ion-col>        
+      </ion-row>      
+    </ion-card>
+    
+    <!--
+    <ion-item-sliding #item>
+      <ion-item text-wrap>     
+          <ion-checkbox color="darkprimarycolor" checked="false"  (ionChange)="datachanged({book:book,ev:$event})"></ion-checkbox>    
+          <ion-thumbnail item-start>
+            <img class="curves" src={{book.image}} ngDefaultControl>     
+          </ion-thumbnail>
+          
+          <ion-label style="color:#132502;" text-wrap><strong>{{book.title}}</strong></ion-label>       
+           
+      </ion-item>	
+      <ion-item-options side="right">
+        
+        <button style="font-size:1.2rem;" ion-button color="accent" (click)="subscribeBook(book)"><ion-icon name="md-filing">Subscribe</ion-icon></button>
+      
+        <button style="font-size:1.2rem;" ion-button color="darkprimarycolor" (click)="giftFriend(book)"><ion-icon name="md-paper-plane">Send</ion-icon></button>
+      </ion-item-options> 		          			
+    </ion-item-sliding>    
+    -->
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-header >
+  <ion-navbar color="popOverBtn"> 
+    <!--
+    <ion-buttons start >
+      <button ion-button (click)="close()">
+        <ion-icon name="md-close"></ion-icon>
+      </button> 
+    </ion-buttons>  
+    -->
+
+    <ion-buttons end >
+      <button ion-button (click)="home()">
+        <ion-icon name="md-home"></ion-icon>
+      </button> 
+    </ion-buttons>        
+    <ion-title>Profile</ion-title>
+    <ion-toolbar color="gold">
+      <ion-item>
+        <ion-label>Private</ion-label>
+        <ion-toggle color="resendBtn" [(ngModel)]="_private" (ionChange)="updateItem(_private)" checked="false"></ion-toggle>
+      </ion-item>    
+    </ion-toolbar>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content padding>
+  <div class="container">
+    <img src="assets/imgs/casual-suits.jpg" name="openfileid" (click)="openFile()">
+  </div>
+
+<div class="appForm">
+  <ion-list>
+    <ion-item>      
+      <ion-input placeholder="UserName" style="border: 1px solid black; text-align:right; border-radius: 4px;" [(ngModel)]="username" type="text" id="till"></ion-input>
+    </ion-item>   
+    <hr> 
+    <hr>
+      <ion-item >
+        <ion-label stacked>Gender</ion-label>
+          <ion-select   [(ngModel)]="fromAccount">
+             <ion-option value="account1" >Male</ion-option> 
+             <ion-option value="account2" >Female</ion-option> 
+          </ion-select>
+      </ion-item>
+    <hr>
+    <ion-item>
+      <ion-input placeholder="ID Number" style="border: 1px solid black; text-align:right; border-radius: 4px;" [(ngModel)]="idnumber" type="text" id="amount"></ion-input>
+    </ion-item> 
+    <hr>
+    <ion-item>
+      <ion-input placeholder="Phone Number" style="border: 1px solid black; text-align:right; border-radius: 4px;" [(ngModel)]="phonenumber" type="text" id="amount"></ion-input>
+    </ion-item>  
+    <hr>
+    <ion-item>
+      <ion-label>Date Of Birth</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY"  style="border: 1px solid black; text-align:right; border-radius: 4px;" pickerFormat="MMMM YYYY DDDD" [(ngModel)]="dob"></ion-datetime>
+    </ion-item>                
+  </ion-list>   
+
+  <hr>
+
+  </div>  
+  <button ion-button block color="gold" (click)="updateProfile()">Update Profile</button>
+</ion-content>

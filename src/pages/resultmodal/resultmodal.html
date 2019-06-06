@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar color="popOverBtn" hideBackButton> 
+    <ion-buttons start >
+      <button ion-button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button> 
+    </ion-buttons>    
+
+    <ion-buttons end >
+      <button ion-button (click)="openSubscriptions()">
+        <ion-icon name="book"></ion-icon>
+      </button>       
+      <button ion-button (click)="home()">
+        <ion-icon name="md-home"></ion-icon>
+      </button> 
+    </ion-buttons>       
+    <ion-title>{{title}} Search Results</ion-title>
+  </ion-navbar> 
+
+  <ion-toolbar color="popOverBtn" [(ngModel)]="resultCategories">
+      <ion-segment color="resendBtn" style="font-size:1.3rem" no-border-bottom>
+        <ion-segment-button value="web">
+          Web
+        </ion-segment-button>
+        <ion-segment-button value="news">
+          News
+        </ion-segment-button>
+      </ion-segment>
+  </ion-toolbar>  
+</ion-header>
+
+<ion-content padding class="modal">
+
+  <div [ngSwitch]="resultCategories">
+    <div *ngSwitchCase="'web'">
+      <ion-card *ngFor="let link of links" text-wrap (dblclick)="subscribe(link)" class="curves">
+        <ion-card-header>
+          <ion-label style="color:#132502;" text-wrap><strong>{{link.name}}</strong></ion-label>       
+        </ion-card-header>
+        <ion-card-content>
+          <!--<p text-wrap>{{link.snippet}}</p>  -->
+          <!--<button ion-button clear (click)="singleClickSubscribe(link)">Subscribe</button>-->
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div *ngSwitchCase="'news'">
+      <ion-card *ngFor="let link of newsLinks" text-wrap (dblclick)="subscribe(link)" class="curves">
+        <ion-card-header>
+          <ion-label style="color:#132502;" text-wrap><strong>{{link.name}}</strong></ion-label>       
+          <p style="color:#2E4600;"><strong>{{link.datePublished|dateformat}}</strong></p>
+        </ion-card-header>
+        <!--
+        <ion-card-content>
+          <p text-wrap>{{link.description}}</p>  
+        </ion-card-content>
+        -->
+      </ion-card>    
+    </div>
+  </div>
+  
+</ion-content>

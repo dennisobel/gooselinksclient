@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="popOverBtn"> 
+    <!--
+    <ion-buttons start >
+      <button ion-button (click)="close()">
+        <ion-icon name="md-close"></ion-icon>
+      </button> 
+    </ion-buttons>   
+    -->
+    <ion-buttons end >
+      <button ion-button (click)="home()">
+        <ion-icon name="md-home"></ion-icon>
+      </button> 
+    </ion-buttons>       
+    <ion-title>Contact Us</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content padding>
+  <ion-toolbar color="iconsandtext">
+    <button ion-button color="gold" (click)="call()">
+      <ion-icon name="md-call"></ion-icon>
+    </button>  
+
+    <button ion-button color="gold" (click)="text()">
+      <ion-icon name="md-text"></ion-icon>
+    </button>        
+
+    <button ion-button color="gold" (click)="email()">
+      <ion-icon name="md-mail"></ion-icon>
+    </button>             
+  </ion-toolbar>
+
+  <hr/>
+
+  <textarea 
+  rows="5" cols="33"
+  #myInput 
+  id="txtarea" maxLength="500" 
+  (keyup)="resize()" 
+  [(ngModel)]="myStuff"></textarea>
+
+  <button ion-button color="gold" (click)="submitEnquiry()">Submit</button>    
+
+</ion-content>

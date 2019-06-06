@@ -1,0 +1,14 @@
+<ion-content padding class="no-scroll">
+  <form [formGroup]="login" (ngSubmit)="handleLogin('LandingPage')">
+    <ion-item>    
+      <ion-input formControlName="userName" placeholder="Username" style="text-align:right; border-radius: 4px;" [(ngModel)]="username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="password" placeholder="Password" style="text-align:right; border-radius: 4px;" [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>  
+
+    <button ion-button block color="color2" type="submit" [disabled]="!login.valid">Login</button>
+  </form>
+  
+</ion-content>

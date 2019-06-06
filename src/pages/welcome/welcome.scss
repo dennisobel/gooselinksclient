@@ -1,0 +1,38 @@
+page-welcome {
+    // .getstart {
+    //     background-image: url('../../assets/imgs/bookcase.jpg');
+    //     background-repeat: no-repeat;
+    //     background-size:cover;
+    // }
+
+    ion-content{
+        background-image: url('../../assets/imgs/bookcase.jpg');
+        // background-image: url('../../assets/imgs/iBook.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+
+
+
+    .no-scroll .scroll-content{
+        overflow: hidden;
+    }	
+
+    .picha {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: auto;
+        position: absolute;
+        top:50%;
+        left:25%;
+        opacity: 0.7;
+        z-index: -5;
+
+     }
+     
+     .picha img {
+        width: 100%;
+        // border-radius: 50%;
+     }
+}

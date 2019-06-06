@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-navbar color="popOverBtn" hideBackButton>
+    <ion-buttons start > 
+      <button class="btn" ion-button show menuToggle>
+        <ion-icon name=md-menu></ion-icon>
+      </button>    
+    </ion-buttons>  
+    <ion-buttons end >
+      <button ion-button (click)="openSubscriptions()">
+        <ion-icon name="book"></ion-icon>
+      </button> 
+      <button ion-button (click)="openProfile()">
+        <ion-icon name="md-person"></ion-icon>
+      </button>
+      <button ion-button (click)="firendsList()">
+        <ion-icon name="md-people"></ion-icon>
+      </button>      
+    </ion-buttons>
+    
+    <ion-toolbar>
+        <ion-searchbar color="popOverBtn" [(ngModel)]="searchTerm" (search)="getItems()" placeholder="Search and Subscribe"></ion-searchbar> 
+    </ion-toolbar>  
+    <ion-toolbar *ngIf="showBulkAction == true" color="popOverBtn">
+    <ion-buttons end >
+      <button 
+      ion-button 
+      (click)="addBulkSubscriptions()"
+      ion-long-press 
+      [interval]="400" 
+      (onPressStart)="pressed()" 
+      (onPressing)="active()" 
+      (onPressEnd)="released()">
+        
+        <ion-icon name="md-basket"></ion-icon>
+        <ion-label *ngIf="showSubscribe == true">Subscribe</ion-label>
+
+      </button> 
+
+      <button 
+      ion-button 
+      (click)="addBulkGiftFriend()"
+      ion-long-press 
+      [interval]="400" 
+      (onPressStart)="giftPressed()" 
+      (onPressing)="giftActive()" 
+      (onPressEnd)="giftReleased()">
+        
+        <ion-icon name="md-paper-plane"></ion-icon>
+        <ion-label *ngIf="showGift == true">Gift Friend</ion-label>
+
+      </button>
+    </ion-buttons>    
+  </ion-toolbar>    
+  </ion-navbar> 
+
+  <ion-navbar color="popOverBtn" hideBackButton>
+    <ion-toolbar color="popOverBtn" [(ngModel)]="categories">
+        <ion-segment color="resendBtn" style="font-size:1.3rem" no-border-bottom>
+          <ion-segment-button value="popular">
+            Popular
+          </ion-segment-button>
+          <ion-segment-button value="free">
+            Free
+          </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>  
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  
+  <div [ngSwitch]="categories">
+    <div *ngSwitchCase="'popular'">
+      <ion-list *ngFor="let book of booksArray" text-wrap>
+        <ion-item-sliding #item>
+          <ion-item text-wrap>     
+              <ion-checkbox id="time" color="popOverBtn" class="checkbox-square" checked="false"  (ionChange)="datachanged({book:book,ev:$event})"></ion-checkbox>    
+              <ion-thumbnail item-start>
+                <img class="curves" src={{book.image}} ngDefaultControl>     
+              </ion-thumbnail>
+              <!--<p style="color:#132502;"><strong>{{book.subtitle}}</strong></p>  -->
+              <ion-label style="color:#132502;" text-wrap><strong>{{book.title}}</strong></ion-label>       
+              
+          </ion-item>	
+          <ion-item-options side="right">
+            
+            <button style="font-size:1.2rem;" ion-button color="accent" (click)="subscribeBook(book)"><ion-icon name="md-filing">Subscribe</ion-icon></button>
+          
+            <button style="font-size:1.2rem;" ion-button color="resendBtn" (click)="giftFriend(book)"><ion-icon name="md-paper-plane">Gift</ion-icon></button>
+          </ion-item-options> 		          			
+        </ion-item-sliding>    
+      </ion-list>
+    </div>
+
+    <div *ngSwitchCase="'free'">
+      <ion-list *ngFor="let book of freeArray" text-wrap (dblclick)="subscribeBook(book)">
+        <ion-item-sliding #item>
+          <ion-item text-wrap>     
+              <ion-checkbox color="popOverBtn" class="checkbox-square" checked="false"  (ionChange)="datachanged({book:book,ev:$event})"></ion-checkbox>    
+              <ion-thumbnail item-start>
+                <img class="curves" src={{book.image}} ngDefaultControl>     
+              </ion-thumbnail>
+              <!--<p style="color:#132502;"><strong>{{book.subtitle}}</strong></p>  -->
+              <ion-label style="color:#132502;" text-wrap><strong>{{book.title}}</strong></ion-label>       
+              
+          </ion-item>	
+          <ion-item-options side="right">
+            
+            <button style="font-size:1.2rem;" ion-button color="accent" (click)="subscribeBook(book)"><ion-icon name="md-filing">Subscribe</ion-icon></button>
+          
+            <button style="font-size:1.2rem;" ion-button color="resendBtn" (click)="giftFriend(book)"><ion-icon name="md-paper-plane">Gift</ion-icon></button>
+          </ion-item-options> 		          			
+        </ion-item-sliding>    
+      </ion-list>
+    </div>    
+  </div>
+</ion-content>

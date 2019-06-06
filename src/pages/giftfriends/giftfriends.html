@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar color="popOverBtn"> 
+    <!--
+    <ion-buttons start >
+      <button ion-button (click)="close()">
+        <ion-icon name="md-close"></ion-icon>
+      </button> 
+    </ion-buttons> 
+    -->  
+
+    <ion-buttons end >
+      <button ion-button (click)="home()">
+        <ion-icon name="md-home"></ion-icon>
+      </button> 
+    </ion-buttons>      
+      <!--<ion-title>Friends</ion-title>-->
+      <ion-toolbar>
+        <ion-searchbar color="darkprimarycolor" [(ngModel)]="searchTerm" (search)="getItems()" placeholder="Find/Add Friends"></ion-searchbar> 
+      </ion-toolbar> 
+  </ion-navbar> 
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <ion-list>
+      <ion-card *ngIf="friend">
+        <ion-card-header>{{friend.userName}}</ion-card-header>
+        
+        <ion-card-header>{{friend.phoneNumber}}</ion-card-header>
+        
+        <button ion-button clear (click)="addAsFriend(friend)">Add To Friends List</button>
+      </ion-card>
+    </ion-list>            
+  </div> 
+  <ion-list>
+    <!--<ion-card class="curves">-->
+    <ion-item-sliding #item>
+      <ion-item *ngFor="let friend of storedFriendsList">        
+          <ion-avatar item-start>
+            <img class="picha" src="assets/imgs/casual-suits.jpg" ngDefaultControl/>      
+          </ion-avatar>
+          <p style="color:#132502;" text-wrap><strong>{{friend.userName}} : {{friend.phoneNumber}}</strong></p>  
+                
+      </ion-item>	
+      <ion-item-options side="right">
+        
+        <button style="font-size:1.2rem;" ion-button color="accent" (click)="viewCollection()"><ion-icon name="md-eye">View Collection</ion-icon></button>
+      
+        <!--<button style="font-size:1.2rem;" ion-button color="resendBtn" (click)="giftBook(data)"><ion-icon name="md-paper-plane">Send Gift</ion-icon></button>-->
+      </ion-item-options> 		          			
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

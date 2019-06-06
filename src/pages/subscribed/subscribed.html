@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="popOverBtn"> 
+    <!--
+    <ion-buttons start >
+      <button ion-button (click)="close()">
+        <ion-icon name="md-close"></ion-icon>
+      </button> 
+    </ion-buttons> 
+    -->  
+
+    <ion-buttons end >
+      <button ion-button (click)="home()">
+        <ion-icon name="md-home"></ion-icon>
+      </button> 
+    </ion-buttons>     
+    <ion-title>Subscribed Books</ion-title>
+  </ion-navbar> 
+</ion-header>
+
+<ion-content padding class="modal">
+
+ <ion-list *ngFor="let book of subscribedBooks" text-wrap>
+    <ion-item-sliding #item>
+      <ion-item text-wrap (click)="viewLink(book)">     
+          <!--<ion-checkbox color="darkprimarycolor" checked="false"  (ionChange)="datachanged({book:book,ev:$event})"></ion-checkbox>    -->
+          <ion-thumbnail item-start>
+            <img class="curves" src={{book.image}} ngDefaultControl>     
+          </ion-thumbnail>
+          <!--<p style="color:#132502;"><strong>{{book.subtitle}}</strong></p>  -->
+          <ion-label style="color:#132502;" text-wrap><strong>{{book.title}}</strong></ion-label>       
+           
+      </ion-item>	
+      <ion-item-options side="right">
+        <!--<button style="font-size:1.2rem;" ion-button color="darkprimarycolor" (click)="readBook(book)"><ion-icon name="md-eye">View</ion-icon></button>-->
+        <button style="font-size:1.2rem;" ion-button color="accent" (click)="giftFriend(book)"><ion-icon name="md-paper-plane">Send As Gift</ion-icon></button>
+        <!--<button style="font-size:1.2rem;" ion-button color="danger" (click)="deleteBook(book)"><ion-icon name="md-trash">Del</ion-icon></button>-->
+      </ion-item-options> 		          			
+    </ion-item-sliding>    
+  </ion-list>  
+</ion-content>
